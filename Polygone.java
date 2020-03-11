@@ -1,14 +1,22 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Polygone {
 
     private int nbSommets;
-    private Point[] p;
+    private ArrayList<Point> p;
+    private ArrayList<Corde> c;
 
-    public Polygone(Point[] p) {
-        this.nbSommets = p.length;
+    public Polygone(ArrayList<Point> p) {
+        this.nbSommets = p.size();
         this.p = p;
+    }
+
+    public ArrayList<Corde> getC() {
+        return c;
+    }
+
+    public void setC(ArrayList<Corde> c) {
+        this.c = c;
     }
 
     public int getNbSommets() {
@@ -19,25 +27,36 @@ public class Polygone {
         this.nbSommets = nbSommets;
     }
 
-    public void triangulerSuccessifs () {
+    public void setP(ArrayList<Point> p) {
+        this.p = p;
+    }
+
+    public ArrayList<Integer[]> triangulerSuccessifs () {
 
         ArrayList<Integer[]> triangulation = new ArrayList<>();
 
         for (int i = 0; i < nbSommets; i++) {
-            for (int j = 0; j < nbSommets; i++) {
-                for (int k = 0; k < triangulation.size(); k++)
-                if (valideCorde(i, j, triangulation.get(k)[0], triangulation.get(k)[1])) {
+            for (int j = 0; j < nbSommets; j++) {
+                boolean ok = true;
+                for (int k = 0; k < triangulation.size(); k++) {
+                    Integer[] corde = triangulation.get(k);
+                    System.out.println(i + " " + j + " " + corde[0] + " " + corde[1]);
+                    if (!valideCorde(i, j, corde[0], corde[1])) {
+                        System.out.println("Raté");
+                        ok = false;
+                    }
+                }
+                if (ok) {
                     Integer[] l = {0, 0};
                     l[0] = i;
                     l[1] = j;
+                    System.out.println(l[0] + " " + l[1]);
                     triangulation.add(l);
                 }
             }
         }
-    }
 
-    public void setP(Point[] p) {
-        this.p = p;
+        return triangulation;
     }
 
     public Boolean valideCorde(int s1, int s2, int s3, int s4) {
@@ -62,7 +81,13 @@ public class Polygone {
         }
         return returnValue;
     }
+
+    @Override
+    public String toString() {
+        return "Polygone [nbSommets=" + nbSommets + ", p=" + p + "]";
+    }
     
 
 
+    
 }
