@@ -27,7 +27,7 @@ public class Polygone {
             for (int j = 0; j < nbSommets; i++) {
                 for (int k = 0; k < triangulation.size(); k++)
                 if (valideCorde(i, j, triangulation.get(k)[0], triangulation.get(k)[1])) {
-                    Integer[] l;
+                    Integer[] l = {0, 0};
                     l[0] = i;
                     l[1] = j;
                     triangulation.add(l);
@@ -42,6 +42,7 @@ public class Polygone {
 
     public Boolean valideCorde(int s1, int s2, int s3, int s4) {
         Boolean returnValue = true;
+        
         if (s2<s1){
             int temp = s1;
             s1 = s2;
