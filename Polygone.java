@@ -9,6 +9,7 @@ public class Polygone {
     public Polygone(ArrayList<Point> p) {
         this.nbSommets = p.size();
         this.p = p;
+        this.c = new ArrayList<>();
     }
 
     public ArrayList<Corde> getC() {
@@ -38,7 +39,7 @@ public class Polygone {
             for (int j = i; j < nbSommets; j++) {
                 boolean ok = true;
                 if (!valideCorde(i, j)) {
-                    System.out.println("Raté");
+                    System.out.println("Raté " + i + " " + j);
                     ok = false;
                 }
                 if (ok) {
@@ -66,7 +67,7 @@ public class Polygone {
             returnValue = false;
         }
         for (int i=0 ; i<c.size(); i++){
-
+            System.out.println(s1 + " " + s2 + " " + c.get(i));
             if(s1==c.get(i).getS1() && s2==c.get(i).getS2() || s1==c.get(i).getS2() && s2==c.get(i).getS1()){
                 returnValue = false;
             }
@@ -78,6 +79,9 @@ public class Polygone {
             }
             
         }
+
+        System.out.println(returnValue);
+
         return returnValue;
     }
 
