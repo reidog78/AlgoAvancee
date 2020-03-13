@@ -31,32 +31,23 @@ public class Polygone {
         this.p = p;
     }
 
-    public ArrayList<Integer[]> triangulerSuccessifs () {
+    public ArrayList<Corde> triangulerSuccessifs () {
 
-        ArrayList<Integer[]> triangulation = new ArrayList<>();
 
         for (int i = 0; i < nbSommets; i++) {
-            for (int j = 0; j < nbSommets; j++) {
+            for (int j = i; j < nbSommets; j++) {
                 boolean ok = true;
-                for (int k = 0; k < triangulation.size(); k++) {
-                    Integer[] corde = triangulation.get(k);
-                    System.out.println(i + " " + j + " " + corde[0] + " " + corde[1]);
-                    if (!valideCorde(i, j, corde[0], corde[1])) {
-                        System.out.println("Raté");
-                        ok = false;
-                    }
+                if (!valideCorde(i, j)) {
+                    System.out.println("Raté");
+                    ok = false;
                 }
                 if (ok) {
-                    Integer[] l = {0, 0};
-                    l[0] = i;
-                    l[1] = j;
-                    System.out.println(l[0] + " " + l[1]);
-                    triangulation.add(l);
+                    c.add(new Corde(i, j));
                 }
             }
         }
 
-        return triangulation;
+        return c;
     }
 
     public Boolean valideCorde(int s1, int s2, int s3, int s4) {
