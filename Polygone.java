@@ -59,7 +59,7 @@ public class Polygone {
         return triangulation;
     }
 
-    public Boolean valideCorde(int s1, int s2, int s3, int s4) {
+    public Boolean valideCorde(int s1, int s2) {
         Boolean returnValue = true;
         
         if (s2<s1){
@@ -67,17 +67,15 @@ public class Polygone {
             s1 = s2;
             s2 = temp;
         }
-        if (s4<s3){
-            int temp = s3;
-            s3 = s4;
-            s4 = temp;
-        }
+        for (int i=0 ; i<c.size(); i++){
 
-        if(s1==s3 && s2==s4 || s1==s4 && s2==s3){
-            returnValue = false;
-        }
-        else if(s1<s3 && s3<s2 && s2<s4){
-            returnValue = false;
+            if(s1==c.get(i).getS1() && s2==c.get(i).getS2() || s1==c.get(i).getS2() && s2==c.get(i).getS1()){
+                returnValue = false;
+            }
+            else if(s1<c.get(i).getS1() && c.get(i).getS1()<s2 && s2<c.get(i).getS2()){
+                returnValue = false;
+            }
+            
         }
         return returnValue;
     }
