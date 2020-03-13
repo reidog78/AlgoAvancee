@@ -58,12 +58,16 @@ public class Polygone {
             s1 = s2;
             s2 = temp;
         }
+        if(s1==s2){
+            returnValue = false;
+        }
+
+        if(s1==(s2-1)%nbSommets || s1 == (s2+1)%nbSommets){
+            returnValue = false;
+        }
         for (int i=0 ; i<c.size(); i++){
 
             if(s1==c.get(i).getS1() && s2==c.get(i).getS2() || s1==c.get(i).getS2() && s2==c.get(i).getS1()){
-                returnValue = false;
-            }
-            else if(s1==s2){
                 returnValue = false;
             }
             else if(s1<c.get(i).getS1() && c.get(i).getS1()<s2 && s2<c.get(i).getS2()){
