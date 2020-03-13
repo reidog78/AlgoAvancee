@@ -28,6 +28,11 @@ public class Corde {
         this.s2 = s2;
     }
 
+    @Override
+    public String toString() {
+        return "Corde [s1=" + s1 + ", s2=" + s2 + "]";
+    }
+
     
 
 }
