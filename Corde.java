@@ -4,9 +4,11 @@ public class Corde {
     private int s2;
 
     public Corde(int s1, int s2) {
-        if (s1 != s2) {
+        if (s1 < s2) {
             this.s1 = s1;
             this.s2 = s2;
+        } else {
+            System.out.println("Tu fais de la merde " + s1 + " " + s2);
         }
     }
 
