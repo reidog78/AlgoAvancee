@@ -21,6 +21,11 @@ public class Triangulation {
         this.longueurTotale = sum;
     }
 
+    public Triangulation(Triangulation t){
+        this.listeCordes = (ArrayList<Corde>) t.listeCordes.clone();
+        this.longueurTotale = t.longueurTotale;
+    }
+
     public void addCorde(Corde c){
         this.listeCordes.add(c);
         this.longueurTotale = longueurTotale + c.getLength();
