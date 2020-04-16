@@ -4,7 +4,7 @@ public class Point {
 
     private double x;
     private double y;
-    
+
     public double getX() {
         return x;
     }
@@ -35,6 +35,6 @@ public class Point {
         return "essaisSuccessifs.Point [x=" + x + ", y=" + y + "]";
     }
 
-    
+
 
 }

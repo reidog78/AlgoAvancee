@@ -65,8 +65,8 @@ public class Polygone {
     public String toString() {
         return "essaisSuccessifs.Polygone [nbSommets=" + nbSommets + ", p=" + p + "]";
     }
-    
 
 
-    
+
+
 }
