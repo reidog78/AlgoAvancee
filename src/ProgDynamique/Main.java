@@ -84,6 +84,5 @@ public class Main {
         tri = triangulationOpti(p);
 
     }
-    
 
 }
