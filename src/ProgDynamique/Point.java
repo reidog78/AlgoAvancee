@@ -30,7 +30,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "progDynamique.Point [x=" + x + ", y=" + y + "]";
+        return "essaisSuccessifs.Point [x=" + x + ", y=" + y + "]";
     }
 
     
