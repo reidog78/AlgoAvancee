@@ -42,4 +42,9 @@ public class Triangulation {
         this.longueurTotale = longueurTotale;
     }
 
+    @Override
+    public String toString() {
+        return "Triangulation [listeCordes=" + listeCordes + ", longueurTotale=" + longueurTotale + "]";
+    }
+
 }
