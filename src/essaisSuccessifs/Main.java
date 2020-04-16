@@ -1,3 +1,5 @@
+package essaisSuccessifs;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -11,7 +13,6 @@ public class Main {
         pts.add(new Point(15, 5));
         pts.add(new Point(12, 3));
         pts.add(new Point(10, 0));
-
 
         Polygone p = new Polygone(pts);
 

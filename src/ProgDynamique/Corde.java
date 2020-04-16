@@ -1,3 +1,5 @@
+package ProgDynamique;
+
 public class Corde {
 
     private int s1;
@@ -30,7 +32,7 @@ public class Corde {
 
     @Override
     public String toString() {
-        return "Corde [s1=" + s1 + ", s2=" + s2 + "]";
+        return "essaisSuccessifs.Corde [s1=" + s1 + ", s2=" + s2 + "]";
     }
 
     

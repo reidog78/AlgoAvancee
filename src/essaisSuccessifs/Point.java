@@ -1,3 +1,5 @@
+package essaisSuccessifs;
+
 public class Point {
 
     private int x;
@@ -28,7 +30,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point [x=" + x + ", y=" + y + "]";
+        return "essaisSuccessifs.Point [x=" + x + ", y=" + y + "]";
     }
 
     

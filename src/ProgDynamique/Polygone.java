@@ -1,3 +1,5 @@
+package ProgDynamique;
+
 import java.util.ArrayList;
 
 public class Polygone {
@@ -75,7 +77,6 @@ public class Polygone {
             } else if (s1 > corde.getS1() && corde.getS2() > s1 && s2 > corde.getS2()) {
                 returnValue = false;
             }
-
         }
 
         System.out.println(returnValue);
@@ -85,7 +86,7 @@ public class Polygone {
 
     @Override
     public String toString() {
-        return "Polygone [nbSommets=" + nbSommets + ", p=" + p + "]";
+        return "essaisSuccessifs.Polygone [nbSommets=" + nbSommets + ", p=" + p + "]";
     }
     
 
