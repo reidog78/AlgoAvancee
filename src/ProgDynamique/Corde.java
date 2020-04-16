@@ -2,38 +2,41 @@ package ProgDynamique;
 
 public class Corde {
 
-    private int s1;
-    private int s2;
+    private Point s1;
+    private Point s2;
+    private double length;
 
-    public Corde(int s1, int s2) {
-        if (s1 < s2) {
+    public Corde(Point s1, Point s2) {
             this.s1 = s1;
             this.s2 = s2;
-        } else {
-            System.out.println("Tu fais de la merde " + s1 + " " + s2);
-        }
+            this.length = Math.sqrt( (s2.getX() - s1.getX() ) * (s2.getX() - s1.getX() ) + (s2.getY() - s1.getY() ) * ( s2.getY() - s1.getY() ) );
     }
 
-    public int getS1() {
+    public Point getS1() {
         return s1;
     }
 
-    public void setS1(int s1) {
+    public void setS1(Point s1) {
         this.s1 = s1;
     }
 
-    public int getS2() {
+    public Point getS2() {
         return s2;
     }
 
-    public void setS2(int s2) {
+    public void setS2(Point s2) {
         this.s2 = s2;
     }
 
     @Override
     public String toString() {
-        return "essaisSuccessifs.Corde [s1=" + s1 + ", s2=" + s2 + "]";
+        return "progDynamique.Corde [s1=" + s1 + ", s2=" + s2 + "]";
     }
+
+    public double getLength() {
+        return length;
+    }
+
 
     
 
