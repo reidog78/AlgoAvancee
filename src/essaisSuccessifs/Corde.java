@@ -42,6 +42,7 @@ public class Corde {
     }
 
     public boolean intersection (Corde c) {
+        // Si les points des 2 cordes ne sont pas entrelacés, il n'y a pas d'intersection
         if (c.getP1() <= p1 && p1 < p2 && p2 <= c.getP2()) {
             return false;
         } else if (p1 < p2 && p2 <= c.getP1() && c.getP1() < c.getP2()) {
@@ -54,12 +55,4 @@ public class Corde {
         return true;
     }
 
-    public boolean inf (Corde c) {
-        if (p1 < c.getP1()) {
-            return true;
-        } else if (p1 == c.getP1()){
-            return p2 < c.getP2();
-        }
-        return false;
-    }
 }

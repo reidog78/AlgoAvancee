@@ -57,78 +57,71 @@ public class Polygone {
         return p;
     }
 
-    public Triangulation trianguler () {
+    public Triangulation trianguler (double lAct, double lMax) {
 
+        // On retourne une triangulation vide si le polygone a moins de 3 côtés
         if (nbSommets <= 3) {
             return new Triangulation(this);
         }
+
+        // On récupère la liste des cordes de ce polgone
         ArrayList<Corde> cordesPossibles = cordesPossibles();
         Triangulation res = new Triangulation(this);
         for (Corde c : cordesPossibles) {
-            System.out.println("Polynome : " + this);
-            System.out.println("Etepe : " + cordesPossibles.indexOf(c));
-            System.out.println("Corde : " + c + " parmi " + cordesPossibles);
+
+            // Pour chaque corde, on l'ajoute à une triangulation
             Triangulation test = new Triangulation(this);
             test.addCorde(c);
 
-            System.out.println("DBUG" + this.p);
+            // Elagage : si on dépasse déjà la longueur maximale, on abandonne cette corde
+            if (lMax != 0 && lAct + test.getLongueur() > lMax) {
+                continue;
+            }
+
+            // On construit les 2 sous-polygones droit et gauche
             ArrayList<Point> pL = new ArrayList<>(this.p.subList(c.getP1(), c.getP2()));
             pL.add(p.get(c.getP2()));
-
             Polygone polyL = new Polygone(pL);
-            System.out.println("L " + polyL);
 
             ArrayList<Point> pR = new ArrayList<>(this.p.subList(0, c.getP1() + 1));
             pR.addAll(this.p.subList(c.getP2(), nbSommets));
             Polygone polyR = new Polygone(pR);
 
-            System.out.println("R " + polyR);
+            // On triangule ces sous-polygones
+            Triangulation tL = polyL.trianguler(test.getLongueur(), res.getLongueur());
+            Triangulation tR = polyR.trianguler(test.getLongueur(), res.getLongueur());
 
-            Triangulation tL = polyL.trianguler();
-            Triangulation tR = polyR.trianguler();
-
-            boolean allok = true;
-
+            /*
+            // Si l'un des polygones n'a pas pu être triangulisé, on abandonne la corde
             if (tR == null) {
-                System.out.println("Echec TR");
-                allok = false;
+                continue;
             }
-
             if (tL == null) {
-                System.out.println("Echec TL");
-                allok = false;
+                continue;
+            }
+*/
+            // Si on a une collision entre les cordes des sous problèmes, on abandonne la corde
+            test = test.fuse(tR, this);
+            if (test == null) {
+                continue;
+            }
+            test = test.fuse(tL, this);
+            if (test == null) {
+                continue;
             }
 
-            if (allok) {
-                test = test.fuse(tR, this);
-                if (test == null) {
-                    allok = false;
+            // Si la trianguation est correcte et est meilleure que la référence, on change la référence
+            if (test.isValide()) {
+                if (res.isValide()) {
+
+                    if (res.getLongueur() > test.getLongueur()) {
+                        res = test;
+                    }
                 } else {
-                    test = test.fuse(tL, this);
-                    if (test == null) {
-                        allok = false;
-                    }
+                    res = test;
                 }
-
-                if (allok) {
-
-                    if (test.isValide()) {
-                        if (res.isValide()) {
-
-                            if (res.getLongueur() > test.getLongueur()) {
-                                res = test;
-                            } else {
-                                System.out.println("TROPGRAN + ");
-                            }
-                        } else {
-                            res = test;
-                        }
-                    } else {
-                        System.out.println("PAVALID " + test);
-                    }
-                }
-
             }
+
         }
 
 
