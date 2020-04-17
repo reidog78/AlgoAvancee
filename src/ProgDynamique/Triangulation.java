@@ -50,6 +50,7 @@ public class Triangulation {
     @Override
     public String toString() {
         return "Triangulation [listeCordes=" + listeCordes + ", longueurTotale=" + longueurTotale + "]";
+        //return " "+listeCordes.size();
     }
 
 }
