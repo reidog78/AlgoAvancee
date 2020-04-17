@@ -53,4 +53,13 @@ public class Corde {
         }
         return true;
     }
+
+    public boolean inf (Corde c) {
+        if (p1 < c.getP1()) {
+            return true;
+        } else if (p1 == c.getP1()){
+            return p2 < c.getP2();
+        }
+        return false;
+    }
 }
