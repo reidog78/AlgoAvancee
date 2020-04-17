@@ -13,6 +13,7 @@ public class Triangulation {
         this.p = p;
         this.cordes = new ArrayList<>();
         this.longueur = 0;
+
         this.valide = false;
     }
 
@@ -29,6 +30,7 @@ public class Triangulation {
             }
             return true;
         } else {
+            System.out.println("PEUPA " + c + " " + cordes);
             return false;
         }
     }
@@ -47,22 +49,24 @@ public class Triangulation {
     }
 
     public boolean isValide() {
-        return valide;
+        return p.getNbSommets() == cordes.size() + 3;
     }
 
     public Polygone getP() {
         return p;
     }
 
-    public Triangulation fuse (Triangulation t, Polygone p) {
-        Triangulation res = new Triangulation(p);
+    public Triangulation fuse (Triangulation t, Polygone poly) {
+        Triangulation res = new Triangulation(poly);
         for (Corde c : this.cordes) {
-            if (!res.addCorde(c)) {
+            Corde c2 = new Corde (poly.getP().indexOf(this.p.getPoint(c.getP1())), poly.getP().indexOf(this.p.getPoint(c.getP2())) , poly);
+            if (!res.addCorde(c2)) {
                 return null;
             }
         }
         for (Corde c : t.cordes) {
-            if (!res.addCorde(c)) {
+            Corde c2 = new Corde (poly.getP().indexOf(t.p.getPoint(c.getP1())), poly.getP().indexOf(t.p.getPoint(c.getP2())) , poly);
+            if (!res.addCorde(c2)) {
                 return null;
             }
         }
